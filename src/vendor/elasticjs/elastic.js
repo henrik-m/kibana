@@ -7264,6 +7264,11 @@
         return this;
       },
 
+      format: function (f) {
+        filter.range[field].format = f;
+        return this;
+      },
+
       /**
             Should the first from (if set) be inclusive or not.
             Defaults to true
