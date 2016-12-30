@@ -314,9 +314,9 @@ function (angular, app, _, kbn, moment) {
         return;
       }
 
-      sort = [$scope.ejs.Sort($scope.panel.sort[0]).order($scope.panel.sort[1]).ignoreUnmapped(true)];
+      sort = [$scope.ejs.Sort($scope.panel.sort[0]).order($scope.panel.sort[1]).unmappedType('keyword')];
       if($scope.panel.localTime) {
-        sort.push($scope.ejs.Sort($scope.panel.timeField).order($scope.panel.sort[1]).ignoreUnmapped(true));
+        sort.push($scope.ejs.Sort($scope.panel.timeField).order($scope.panel.sort[1]).unmappedType('date'));
       }
 
 
@@ -330,7 +330,7 @@ function (angular, app, _, kbn, moment) {
       $scope.panel.queries.ids = querySrv.idsByMode($scope.panel.queries);
 
       queries = querySrv.getQueryObjs($scope.panel.queries.ids);
-
+      
       boolQuery = $scope.ejs.BoolQuery();
       _.each(queries,function(q) {
         boolQuery = boolQuery.should(querySrv.toEjsObj(q));

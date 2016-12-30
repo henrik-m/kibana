@@ -21086,6 +21086,11 @@
         return this;
       },
 
+      unmappedType: function (type) {
+        sort[key].unmapped_type = type;
+        return this;
+      },
+
       /**
              Sets the distance unit.  Valid values are "mi" for miles or "km"
              for kilometers. Defaults to "km".
