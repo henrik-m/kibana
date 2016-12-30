@@ -11311,13 +11311,13 @@
          @property {Object} query
          */
     var query = {
-      filtered: {
-        query: someQuery._self()
+      bool: {
+        must: someQuery._self()
       }
     };
 
     if (someFilter != null) {
-      query.filtered.filter = someFilter._self();
+      query.bool.filter = someFilter._self();
     }
 
     return {
@@ -11329,16 +11329,16 @@
              @param {Object} oQuery A valid <code>Query</code> object
              @returns {Object} returns <code>this</code> so that calls can be chained.
              */
-      query: function (oQuery) {
+      must: function (oQuery) {
         if (oQuery == null) {
-          return query.filtered.query;
+          return query.bool.must;
         }
 
         if (!isQuery(oQuery)) {
           throw new TypeError('Argument must be a Query');
         }
 
-        query.filtered.query = oQuery._self();
+        query.bool.must = oQuery._self();
         return this;
       },
 
@@ -11351,14 +11351,14 @@
              */
       filter: function (oFilter) {
         if (oFilter == null) {
-          return query.filtered.filter;
+          return query.bool.filter;
         }
 
         if (!isFilter(oFilter)) {
           throw new TypeError('Argument must be a Filter');
         }
 
-        query.filtered.filter = oFilter._self();
+        query.bool.filter = oFilter._self();
         return this;
       },
 
@@ -11385,7 +11385,7 @@
             */
       strategy: function (strategy) {
         if (strategy == null) {
-          return query.filtered.strategy;
+          return query.bool.strategy;
         }
 
         strategy = strategy.toLowerCase();
@@ -11393,7 +11393,7 @@
           strategy === 'leap_frog' || strategy === 'leap_frog_filter_first' ||
           strategy.indexOf('random_access_') === 0) {
 
-          query.filtered.strategy = strategy;
+          query.bool.strategy = strategy;
         }
 
         return this;
@@ -11408,10 +11408,10 @@
             */
       cache: function (trueFalse) {
         if (trueFalse == null) {
-          return query.filtered._cache;
+          return query.bool._cache;
         }
 
-        query.filtered._cache = trueFalse;
+        query.bool._cache = trueFalse;
         return this;
       },
 
@@ -11424,10 +11424,10 @@
             */
       cacheKey: function (k) {
         if (k == null) {
-          return query.filtered._cache_key;
+          return query.bool._cache_key;
         }
 
-        query.filtered._cache_key = k;
+        query.bool._cache_key = k;
         return this;
       },
 
@@ -11440,10 +11440,10 @@
             */
       boost: function (boost) {
         if (boost == null) {
-          return query.filtered.boost;
+          return query.bool.boost;
         }
 
-        query.filtered.boost = boost;
+        query.bool.boost = boost;
         return this;
       },
 
