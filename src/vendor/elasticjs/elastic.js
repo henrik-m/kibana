@@ -19914,9 +19914,13 @@
         t = t.toLowerCase();
         if (t === 'dfs_query_then_fetch' || t === 'dfs_query_and_fetch' ||
           t === 'query_then_fetch' || t === 'query_and_fetch' ||
-          t === 'scan' || t === 'count') {
+          t === 'scan') {
 
           params.search_type = t;
+        }
+        if (t === 'count') {
+          params.search_type = 'query_then_fetch';
+          params.size = 0;
         }
 
         return this;
