@@ -9,7 +9,7 @@ define([
 
 		return {
 			condition: function (config) {
-				return (/\/_search\?search_type=count$/).test(config.url) && signature.test(config.data);
+				return (/\/_search\?search_type=query_then_fetch&size=0$/).test(config.url) && signature.test(config.data);
 			},
 
 			request: function (config) {
