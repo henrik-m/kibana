@@ -17,7 +17,7 @@ define([
 				var aggregationsData = {
 					aggs: {
 						fquery: {
-							filter: facetData.facets.terms.facet_filter.fquery,
+							filter: facetData.facets.terms.facet_filter.fquery.query,
 							aggs: {
 								terms_result: {
 									terms: {
