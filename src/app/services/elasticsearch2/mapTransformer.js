@@ -57,7 +57,7 @@ define([
 				});
 
 				data.facets = facetsData;
-				console.log(data);
+				
 				return response;
 			}
 		};
