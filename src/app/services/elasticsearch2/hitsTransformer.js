@@ -3,7 +3,7 @@ define([
 ],
 function (angular) {
   'use strict';
-  var signature = /^\{\"facets\":\{\"[0-9]+\":\{\"query\":\{\"filtered\":\{\"query\"/;
+  var signature = /^\{\"facets\":\{\"[0-9]+\":\{\"query\":\{\"bool\":\{\"must\"/;
 
   return {
     condition: function(config){
@@ -20,7 +20,7 @@ function (angular) {
 
       for (var i in facets) {
         aggregationsData["aggs"][i] = {};
-        aggregationsData["aggs"][i]["filter"] = facetData["facets"][i];
+        aggregationsData["aggs"][i]["filter"] = facetData["facets"][i]["query"];
       }
 
       aggregationsData.size = 0;
