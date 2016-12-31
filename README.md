@@ -1,20 +1,18 @@
-# Kibana 3 with Elasticsearch 2
-This fork was created in order to support working with elasticsearch2.
-Currently we support facets of "terms", "histograms" and "stats"
-The project was checked against elasticsearch 2.1.1
+# Kibana 3 with up-to-date Elasticsearch
 
-Since Kibana3 is deprecated, any contribution to this fork can simply be done using a pull request
+This fork was created in order to support working with Elasticsearch 5.1 and later.
+It was created from the [existing fork for Elasticsearch 2.1.1](https://github.com/gigya/kibana) to speed up the development.
 
-This fork is based on minimal changes to the original kibana code, by injecting a layer of translation that handle the requests before they leave to the elasticsearch server.
-A different fork can be found at [https://github.com/immunochomik/kibana3](https://github.com/immunochomik/kibana3) that is based on changing the kibana 3 code to work with the new elasticsearch 2 sdk.
+The focus of this fork is to ease the upgrade path from a working ELK cluster with Elasticsearch 1.7 and Logstash 1.4.2/Kibana 3 (with loads of dashboards).
+With an Elasticsearch 5 compatible version of Kibana 3 we would be able to roll out upgrades to current versions of Logstash and Elasticsearch
+without losing our existing analytics dashboards. 
 
+From that position it should be far easier to start migrating individual dashboards step-by-step (which has to be done manually) to the latest version of Kibana.
 
-####Installing on an Elasticsearch instance:
+Since Kibana 3 is deprecated and based on a lot of outdated libraries, the code changes are designed to make the highest possible number
+ of Kibana 3 visualizations work for Elasticsearch 5.1.1 (and possibly later versions). In this context, quick fixes and a bit of dirty patching are 
+ fair game as long as they do not leave the code base in an unmaintainable state.
 
-```bash
-./elasticsearch/bin/plugin install  gigya/kibana/3.0
-open http://localhost:9200/_plugin/kibana
-```
 
 # Kibana
 
