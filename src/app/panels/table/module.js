@@ -314,7 +314,12 @@ function (angular, app, _, kbn, moment) {
         return;
       }
 
-      sort = [$scope.ejs.Sort($scope.panel.sort[0]).order($scope.panel.sort[1]).unmappedType('keyword')];
+      // ES throws an error if we use unmapped_type on special field sorting
+      if($scope.panel.sort[0] === '_score') {
+        sort = [$scope.ejs.Sort($scope.panel.sort[0]).order($scope.panel.sort[1])];
+      } else {
+        sort = [$scope.ejs.Sort($scope.panel.sort[0]).order($scope.panel.sort[1]).unmappedType('keyword')];
+      }
       if($scope.panel.localTime) {
         sort.push($scope.ejs.Sort($scope.panel.timeField).order($scope.panel.sort[1]).unmappedType('date'));
       }
