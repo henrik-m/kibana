@@ -9,11 +9,12 @@ define([
 		'./dateHistogramTransformer',
 		'./histogramTransformer',
 		'./hitsTransformer',
+		'./mapTransformer',
 		'./passthroughTransformer'
 	],
 	function (angular, config, _, trendsTransformer, topnTransformer, termsTransformer,
             statisticalTransformer, dateHistogramTransformer, histogramTransformer,
-            hitsTransformer, passthroughTransformer) {
+            hitsTransformer, mapTransformer, passthroughTransformer) {
 		'use strict';
 
 		var transformers = [
@@ -24,9 +25,10 @@ define([
 			dateHistogramTransformer,
 			histogramTransformer,
 			hitsTransformer,
+			mapTransformer,
 			passthroughTransformer
 		];
-
+		
 		var module = angular.module('kibana.services');
 
 		module.config(function ($httpProvider) {
