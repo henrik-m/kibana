@@ -21,10 +21,10 @@ define([
 
 				for (var i = 0; i < fLen / 2; i++) {
 					aggregationsData["aggs"][i] = {};
-					aggregationsData["aggs"][i]["filter"] = facetData["facets"][i];
+					aggregationsData["aggs"][i]["filter"] = facetData["facets"][i]["query"];
 
 					aggregationsData["aggs"]["old_" + i] = {};
-					aggregationsData["aggs"]["old_" + i]["filter"] = facetData["facets"]["old_" + i];
+					aggregationsData["aggs"]["old_" + i]["filter"] = facetData["facets"]["old_" + i]["query"];
 				}
 				config.data = angular.toJson(aggregationsData);
 
