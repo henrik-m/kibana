@@ -9177,6 +9177,42 @@
     return {
 
       /**
+             Adds query to boolean container. Given query filters matching documents.
+
+             @member ejs.BoolQuery
+             @param {Object} oQuery A valid <code>Filter</code> object
+             @returns {Object} returns <code>this</code> so that calls can be chained.
+             */
+      filter: function (oQuery) {
+        var i, len;
+
+        if (query.bool.filter == null) {
+          query.bool.filter = [];
+        }
+
+        if (oQuery == null) {
+          return query.bool.filter;
+        }
+
+        if (isFilter(oQuery)) {
+          query.bool.filter.push(oQuery._self());
+        } else if (isArray(oQuery)) {
+          query.bool.filter = [];
+          for (i = 0, len = oQuery.length; i < len; i++) {
+            if (!isFilter(oQuery[i])) {
+              throw new TypeError('Argument must be an array of Queries');
+            }
+
+            query.bool.filter.push(oQuery[i]._self());
+          }
+        } else {
+          throw new TypeError('Argument must be a Query or array of Queries');
+        }
+
+        return this;
+      },
+
+      /**
              Adds query to boolean container. Given query "must" appear in matching documents.
 
              @member ejs.BoolQuery

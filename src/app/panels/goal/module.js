@@ -127,11 +127,13 @@ define([
         boolQuery = boolQuery.should(querySrv.toEjsObj(q));
       });
 
+      // Query and filter API have been merged in newer Elasticsearch versions
+      boolQuery = boolQuery.filter(filterSrv.getBoolFilter(filterSrv.ids()));
+
       var results;
 
       request = request
         .query(boolQuery)
-        .filter(filterSrv.getBoolFilter(filterSrv.ids()))
         .size(0);
 
       $scope.inspector = angular.toJson(JSON.parse(request.toString()),true);
