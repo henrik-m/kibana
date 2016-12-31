@@ -3613,12 +3613,12 @@
           return filter.bool.must;
         }
 
-        if (isFilter(oFilter)) {
+        if (isFilter(oFilter) || isQuery(oFilter)) {
           filter.bool.must.push(oFilter._self());
         } else if (isArray(oFilter)) {
           filter.bool.must = [];
           for (i = 0, len = oFilter.length; i < len; i++) {
-            if (!isFilter(oFilter[i])) {
+            if (!(isFilter(oFilter[i]) || isQuery(oFilter[i]))) {
               throw new TypeError('Argument must be an array of Filters');
             }
 
@@ -3653,12 +3653,12 @@
           return filter.bool.must_not;
         }
 
-        if (isFilter(oFilter)) {
+        if (isFilter(oFilter) || isQuery(oFilter)) {
           filter.bool.must_not.push(oFilter._self());
         } else if (isArray(oFilter)) {
           filter.bool.must_not = [];
           for (i = 0, len = oFilter.length; i < len; i++) {
-            if (!isFilter(oFilter[i])) {
+            if (!(isFilter(oFilter[i]) || isQuery(oFilter[i]))) {
               throw new TypeError('Argument must be an array of Filters');
             }
 
@@ -3693,12 +3693,12 @@
           return filter.bool.should;
         }
 
-        if (isFilter(oFilter)) {
+        if (isFilter(oFilter) || isQuery(oFilter)) {
           filter.bool.should.push(oFilter._self());
         } else if (isArray(oFilter)) {
           filter.bool.should = [];
           for (i = 0, len = oFilter.length; i < len; i++) {
-            if (!isFilter(oFilter[i])) {
+            if (!(isFilter(oFilter[i]) || isQuery(oFilter[i]))) {
               throw new TypeError('Argument must be an array of Filters');
             }
 
