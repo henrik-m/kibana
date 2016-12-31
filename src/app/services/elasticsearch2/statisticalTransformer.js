@@ -24,7 +24,7 @@ define([
 					var facet = facetData.facets[key];
 
 					aggregationsData.aggs[key] = {
-						filter: facet.facet_filter.fquery,
+						filter: facet.facet_filter.fquery.query,
 						aggs: {
 							stats: {
 								extended_stats: {
