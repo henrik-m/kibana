@@ -178,11 +178,13 @@ define([
           .from(filter.from)
           .to(filter.to);
       case 'querystring':
-        // This fixes the crashes on filtering, but may have performance implications? Not sure yet how caching works in newer ES versions. Has to be tested!
+        // This fixes the crashes on filtering, but may have performance implications? 
+        // Not sure yet how caching works in newer ES versions. Has to be tested!
         return ejs.QueryStringQuery(filter.query);
         //return ejs.QueryFilter(ejs.QueryStringQuery(filter.query)).cache(true);
       case 'field':
-        // This fixes the crashes on filtering, but may have performance implications? Not sure yet how caching works in newer ES versions. Has to be tested!
+        // This fixes the crashes on filtering, but may have performance implications? 
+        // Not sure yet how caching works in newer ES versions. Has to be tested!
         return ejs.QueryStringQuery(filter.field+":("+filter.query+")");
         //return ejs.QueryFilter(ejs.QueryStringQuery(filter.field+":("+filter.query+")")).cache(true);
       case 'terms':
